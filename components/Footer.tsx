@@ -5,46 +5,7 @@ const Footer: React.FC = () => {
   return (
     <footer>
       
-      {/* SECCIÓN CTA (Llamada a la Acción) - Fondo Azul Oscuro */}
-      <div className="bg-[#041E42] py-20 px-4 sm:px-6 lg:px-8 text-center">
-        <div className="max-w-4xl mx-auto">
-          
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
-            ¿Listo para ordenar tu cuenta y volver a crecer en Mercado Libre?
-          </h2>
-          
-          <p className="text-lg text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Conversemos sobre tu situación actual, revisemos tu cuenta y definamos si Creseller es el acompañamiento estratégico que necesitás.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            
-            {/* BOTÓN 1: CALENDLY */}
-            <a 
-              href="https://calendly.com/fernandokosoy" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#3CAA35] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#2b7d26] transition-all shadow-lg shadow-green-900/20"
-            >
-              <Calendar className="w-5 h-5" />
-              Agendar llamada de diagnóstico
-            </a>
-
-            {/* BOTÓN 2: WHATSAPP */}
-            <a 
-              href="https://wa.me/5491137024896" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition-all backdrop-blur-sm"
-            >
-              <MessageCircle className="w-5 h-5" />
-              Escribir por WhatsApp
-            </a>
-
-          </div>
-        </div>
-      </div>
-
+    
       {/* BARRA INFERIOR (Footer Real) - Fondo Blanco */}
       <div className="bg-white border-t border-slate-100 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
