@@ -27,9 +27,9 @@ const Hero: React.FC = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
               
-              {/* BOTÓN 1: AGENDAR (Enlace a Calendly) */}
+              {/* BOTÓN 1: AGENDAR */}
               <a 
-                href="https://calendly.com/fernandokosoy" 
+                href="/reunion"
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="bg-[#3CAA35] text-white px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#2b7d26] transition-all shadow-lg shadow-green-200 cursor-pointer text-center"

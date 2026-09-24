@@ -42,7 +42,7 @@ const Programs: React.FC = () => {
                 </li>
               ))}
             </ul>
-            <a href="https://calendly.com/fernandokosoy" target="_blank" rel="noopener noreferrer" className="w-full block text-center py-3 rounded-xl border-2 border-slate-100 text-[#041E42] font-bold hover:border-[#041E42] hover:bg-slate-50 transition-all">
+            <a href="/reunion" target="_blank" rel="noopener noreferrer" className="w-full block text-center py-3 rounded-xl border-2 border-slate-100 text-[#041E42] font-bold hover:border-[#041E42] hover:bg-slate-50 transition-all">
               Consultar programa
             </a>
           </div>
@@ -75,7 +75,7 @@ const Programs: React.FC = () => {
               ))}
             </ul>
             <a 
-              href="https://calendly.com/fernandokosoy" 
+              href="/reunion"
               target="_blank" 
               rel="noopener noreferrer"
               className="w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-[#3CAA35] text-white font-bold hover:bg-[#2b7d26] transition-all shadow-lg shadow-green-900/20"
@@ -106,7 +106,7 @@ const Programs: React.FC = () => {
                 </li>
               ))}
             </ul>
-            <a href="https://calendly.com/fernandokosoy" target="_blank" rel="noopener noreferrer" className="w-full block text-center py-3 rounded-xl border-2 border-slate-100 text-[#041E42] font-bold hover:border-[#041E42] hover:bg-slate-50 transition-all">
+            <a href="/reunion" target="_blank" rel="noopener noreferrer" className="w-full block text-center py-3 rounded-xl border-2 border-slate-100 text-[#041E42] font-bold hover:border-[#041E42] hover:bg-slate-50 transition-all">
               Consultar programa
             </a>
           </div>
@@ -115,7 +115,7 @@ const Programs: React.FC = () => {
 
         {/* EXTRA CTA */}
         <div className="mt-16 text-center">
-          <a href="https://calendly.com/fernandokosoy" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[#041E42] font-semibold hover:text-[#3CAA35] transition-colors">
+          <a href="/reunion" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[#041E42] font-semibold hover:text-[#3CAA35] transition-colors">
             ¿No sabés qué programa es para vos? Quiero saber cuál es para mí
             <ArrowRight className="w-4 h-4" />
           </a>

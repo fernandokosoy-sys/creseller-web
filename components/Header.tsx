@@ -63,7 +63,7 @@ const Header: React.FC = () => {
             
             {/* BOTÓN AGENDAR */}
             <a 
-              href="https://calendly.com/fernandokosoy" 
+              href="/reunion"
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-[#3CAA35] text-white px-6 py-2.5 rounded-lg font-bold text-sm hover:bg-[#2b7d26] transition-all shadow-lg shadow-green-200 hover:shadow-green-300 transform hover:-translate-y-0.5"
@@ -96,7 +96,7 @@ const Header: React.FC = () => {
             </button>
           ))}
           <a 
-            href="https://calendly.com/fernandokosoy"
+            href="/reunion"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 bg-[#3CAA35] text-white px-6 py-3 rounded-lg font-bold text-sm w-full"

@@ -18,10 +18,10 @@ const CTASection: React.FC = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="bg-primary-green text-slate-900 px-8 py-5 rounded-2xl font-black flex items-center justify-center gap-3 hover:bg-green-500 transition-all shadow-xl shadow-green-900/20">
+          <a href="/reunion" className="bg-primary-green text-slate-900 px-8 py-5 rounded-2xl font-black flex items-center justify-center gap-3 hover:bg-green-500 transition-all shadow-xl shadow-green-900/20">
             <Calendar className="w-6 h-6" />
             Agendar llamada de diagnóstico
-          </button>
+          </a>
           <button className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-white/20 transition-all">
             <MessageCircle className="w-6 h-6 text-green-400" />
             Escribir por WhatsApp
