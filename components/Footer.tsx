@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
               <Linkedin className="w-6 h-6" />
             </a>
             <a 
-              href="#" // Agrega tu Instagram si tienes
+              href="https://www.instagram.com/creseller.ar/"
               target="_blank" 
               rel="noopener noreferrer"
               className="p-2 text-slate-400 hover:text-[#C13584] hover:bg-slate-50 rounded-full transition-all"
