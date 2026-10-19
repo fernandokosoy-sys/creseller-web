@@ -50,6 +50,23 @@ Descartá: marcas oficiales grandes, sellers ya con consultora visible, cuentas 
 6. Para los 5 mejores de cada segmento, redactá un primer mensaje corto (máx. 5 líneas, tono cercano, voseo argentino) que cite una observación concreta y verificable de su cuenta. Sin presión ni promesas. En consultoría ofrecé la llamada de diagnóstico (`/reunion`); en capacitación, el curso o taller. No uses opiniones o datos que no hayas verificado y no tomes una inferencia como crítica.
 7. Mercado Libre no permite contactar vendedores por fuera de una compra: buscá un canal público (Instagram, web, mail comercial) para cada prospecto. Si no hay, escribí "sin canal público".
 
+## Cómo escribir el mensaje
+Quien factura $32 MM o más recibe ofertas todo el tiempo. El mensaje tiene que parecer escrito por un colega que miró su cuenta, no una plantilla.
+- **Abrí con un dato propio y específico**, no con un saludo ni con halagos. Una publicación concreta, un número, una comparación con un competidor directo. Nada de "vi que tienen buenos productos" ni "tus fotos son flojas": eso ya lo saben.
+- **Conectalo con plata.** Decí qué puede estar costando esa fricción, con una cuenta aproximada que marcás como estimación ("a su volumen, cada punto de conversión en esa publicación serían ~$X por mes, es una cuenta mía a confirmar con sus números").
+- **Credencial breve y real**, una línea sobre qué hace Creseller y con qué tipo de cuentas. Usá solo lo que Fernando te haya dado; si no lo tenés, dejá un campo `[credencial]`. Nunca inventes resultados ni clientes.
+- **Pedí algo chico.** No una "llamada de diagnóstico sin costo". Ofrecé mandarle el análisis de esa publicación y cerrá con una pregunta fácil de contestar.
+- **De par a par**, 4 a 6 líneas, voseo, sin exclamaciones ni "¿cómo andan?", firmado por Fernando.
+- No críticas ("no tienen medalla"): describí una oportunidad. No uses datos que no verificaste.
+
+Modelo de estructura (completá con datos reales de cada cuenta):
+> Fernando, de Creseller. Miré [tienda]: [publicación] está entre lo más vendido de [categoría], pero [dato concreto frente a un competidor directo].
+> A su volumen, esa diferencia podría ser ~$[X]/mes (cuenta mía, a confirmar con sus números).
+> [Credencial real: qué hacemos y con qué cuentas.]
+> Si te sirve, te mando el análisis de esa publicación y de otras 2 con el mismo patrón. ¿Te lo paso por acá?
+
+Para capacitación el mensaje es más simple: un problema concreto de su cuenta y el taller o curso que lo resuelve.
+
 ## Entrega
 Guardá el resultado en `prospectos/AAAA-MM-DD-<categoria>.md` con este formato y devolvé un resumen de 3–4 líneas más la ruta del archivo:
 
