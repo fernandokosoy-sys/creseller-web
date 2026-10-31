@@ -28,6 +28,7 @@ Aclaración importante: lo que ML muestra al comprador es lo que **ML ofrece** (
 - ML tiene descuentos que a veces son "abusivos": una relámpago puede pedir mucho más descuento del que el vendedor da normalmente. Hay que **calcular el margen antes de aceptar** (herramienta: cálculo de precio y margen de Creseller Ads).
 - El vendedor pyme maneja todo (compras, pagos, proveedores, cheques, personal). No tiene tiempo de leer tanta información. En muchos casos ML lo maneja una o dos personas, una de ellas con poco conocimiento.
 - Hay que **medir cuánto del panel y del front mira el vendedor**. Hoy es una hipótesis, sin datos. Ver "Pendientes".
+- **Product Ads como red de pesca (mediomundo):** ACOS alto / ROAS bajo es una red grande que trae de todo; ACOS bajo / ROAS alto es una red ajustada con menos clics pero más calificados. Desarrollado en `idea-ads-red-mediomundo.md`.
 - Lo que ve el comprador **no es igual para todos** (personalización del ranking). El checklist tiene que aclarar si se mira con sesión iniciada, sin sesión o en incógnito.
 
 ## 4. El nicho (hipótesis, sin validar)
@@ -90,4 +91,5 @@ Fuentes:
 - [ ] Armar el material de la clase de fotos y video (domingo) con Visual Seller 10/10.
 - [ ] Llenar el checklist con una búsqueda real de un cliente, como ejemplo y material de video.
 - [ ] Validar el nicho con 5 conversaciones con vendedores.
+- [ ] Validar la metáfora de la red mediomundo con datos de campañas reales y confirmar qué representa el tiburón.
 - [ ] Probar la hipótesis de cuánto del panel mira el vendedor (encuesta o auditoría de cuentas).
