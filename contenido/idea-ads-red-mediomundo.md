@@ -20,7 +20,7 @@ Elegir el ACOS objetivo (o el ROAS) es elegir **qué red de pesca tirás**.
 
 La pregunta de fondo: **¿cuál era el objetivo? ¿Sacar cornalitos, zapatos o tiburones?** Primero se define el pez y después se elige la red.
 
-> A confirmar con Fernando: qué representa el tiburón. ¿Un clic muy fuera de segmento y caro? ¿O una gran venta que la red chica deja pasar?
+**El tiburón es el clic caro (CPC alto).** Hipótesis de Fernando: si salís a buscar visibilidad por todos lados con una red grande, ML puede llevarte a espacios más disputados, donde el clic sale más caro. Con una red ajustada, el tiburón no entra. Falta verificarlo con datos (ver sección 7).
 
 ## 2. Cómo se traduce a Product Ads
 
@@ -74,3 +74,32 @@ Ejercicio práctico:
 Las herramientas de DomUp pueden mostrar cómo se comportan las campañas a distintos objetivos. Por ejemplo: tendencia de TACOS, anuncios que gastan sin vender, presupuesto de ads y campañas de la cuenta.
 
 Pendiente: elegir una cuenta con campañas a distintos objetivos y verificar si el patrón de la metáfora se cumple.
+
+## 7. El CPC: lo que se sabe y lo que no
+
+Todo lo de esta sección sale de guías de terceros, no de documentación oficial de Mercado Libre.
+
+**Lo que se sabe (según esas fuentes)**
+- Se paga por clic, no por impresión.
+- Cada búsqueda o visita a una página dispara una subasta en tiempo real entre anunciantes.
+- La puja no es el único factor: también pesa la calidad y relevancia de la publicación. Material de certificación menciona Ad Rank y ad-score, sin dar la fórmula.
+- Una guía indica que una publicación con buen historial de conversión puede ganar lugar con una puja menor que una publicación débil que paga más.
+- En Amazon funciona de forma parecida (puja más relevancia). El CPC real suele ser menor que el máximo, pero el modelo exacto está discutido: hay una demanda de la FTC sobre cómo se fija el precio, y Amazon lo rechaza.
+
+**Lo que no se sabe**
+- La fórmula exacta del CPC en Mercado Libre.
+- Cómo influye el objetivo de ACOS o de ROAS en lo que se paga por clic.
+- Si una red grande encarece el clic (la hipótesis del tiburón).
+
+**Cambio a verificar:** una agencia certificada de Argentina (Algoritmo Digital) afirma que Mercado Ads dio de baja el ACOS objetivo como modo de configuración y que hoy se configura con ROAS objetivo. Es una fuente de terceros y puede variar por país. Hay que mirar el panel de Mercado Ads de Argentina antes de enseñarlo.
+
+**Para el material:** hablar de "objetivo de rentabilidad (ACOS o ROAS)", y no prometer que bajar el objetivo baja el CPC.
+
+**Cómo estudiarlo con datos:** comparar el CPC promedio por campaña y por anuncio a lo largo del tiempo y cruzarlo con los cambios de objetivo.
+
+Fuentes:
+- Cómo funciona Product Ads (Jaguar Sheet): https://jaguarsheet.com/es/blog/publicidad-mercado-libre-product-ads
+- ACOS y ROAS en Product Ads (Jaguar Sheet): https://jaguarsheet.com/es/blog/acos-roas-product-ads-mercado-libre
+- El fin del ACOS y la era del ROAS objetivo (Algoritmo Digital): https://algoritmodigital.com.ar/publicidad-en-mercado-libre-argentina-el-fin-del-acos-y-la-era-del-roas-objetivo/
+- Documentación de Mercado Ads para desarrolladores: https://developers.mercadolibre.com.ar/devsite/mercado-ads
+- Subasta de Amazon, segundo precio y la demanda de la FTC (AdBadger): https://www.adbadger.com/blog/amazon-says-its-ad-auction-was-second-price-the-ftc-says-you-paid-your-own-bid-anyway/

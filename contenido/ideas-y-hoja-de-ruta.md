@@ -91,5 +91,7 @@ Fuentes:
 - [ ] Armar el material de la clase de fotos y video (domingo) con Visual Seller 10/10.
 - [ ] Llenar el checklist con una búsqueda real de un cliente, como ejemplo y material de video.
 - [ ] Validar el nicho con 5 conversaciones con vendedores.
-- [ ] Validar la metáfora de la red mediomundo con datos de campañas reales y confirmar qué representa el tiburón.
+- [ ] Validar la metáfora de la red mediomundo con datos de campañas reales (el tiburón es el clic caro; es una hipótesis a verificar).
+- [ ] Verificar en el panel de Mercado Ads de Argentina si hoy se configura ACOS objetivo o ROAS objetivo, y ajustar el material.
+- [ ] Reel de la red mediomundo: definir si se filma en la costanera o se arma con dos clips; armar la lista de tomas.
 - [ ] Probar la hipótesis de cuánto del panel mira el vendedor (encuesta o auditoría de cuentas).
