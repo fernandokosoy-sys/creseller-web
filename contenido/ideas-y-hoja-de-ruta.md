@@ -30,6 +30,7 @@ Aclaración importante: lo que ML muestra al comprador es lo que **ML ofrece** (
 - Hay que **medir cuánto del panel y del front mira el vendedor**. Hoy es una hipótesis, sin datos. Ver "Pendientes".
 - **Product Ads como red de pesca (mediomundo):** ACOS alto / ROAS bajo es una red grande que trae de todo; ACOS bajo / ROAS alto es una red ajustada con menos clics pero más calificados. Desarrollado en `idea-ads-red-mediomundo.md`.
 - **ROAS vs ACOS confunde al seller:** el objetivo de campaña se carga en ROAS, pero el seller está acostumbrado a pensar en ACOS, y son inversos (ACOS = 1 / ROAS). El panel muestra ROAS, ACOS y TACOS como resultado. Idea de reel o clase corta: "objetivo vs resultado" y la regla "en ACOS número chico = red chica; en ROAS número chico = red grande".
+- **¿Visibilidad es lo mismo que posicionamiento?** No: visibilidad es que te vean (se alquila con publicidad), posicionamiento es el lugar que ganás (se construye con ventas y conversión). Incluye la opinión de Fernando sobre "ROAS 2,5 en Cyber" como imprudencia si no se monitorea. Desarrollado en `idea-visibilidad-vs-posicionamiento.md`.
 - Lo que ve el comprador **no es igual para todos** (personalización del ranking). El checklist tiene que aclarar si se mira con sesión iniciada, sin sesión o en incógnito.
 
 ## 4. El nicho (hipótesis, sin validar)
@@ -95,5 +96,7 @@ Fuentes:
 - [ ] Validar la metáfora de la red mediomundo con datos de campañas reales (el tiburón es el clic caro; es una hipótesis a verificar).
 - [x] Verificar en el panel de Mercado Ads de Argentina si hoy se configura ACOS objetivo o ROAS objetivo. Confirmado por Fernando: el objetivo es por ROAS.
 - [ ] Armar el reel o la clase corta "ROAS vs ACOS: objetivo y resultado".
+- [ ] Armar el reel o la clase "Visibilidad vs posicionamiento" y probar la prueba del corte en una cuenta.
+- [ ] Confirmar la ventana de atribución de ventas a publicidad en Mercado Ads.
 - [ ] Reel de la red mediomundo: definir si se filma en la costanera o se arma con dos clips; armar la lista de tomas.
 - [ ] Probar la hipótesis de cuánto del panel mira el vendedor (encuesta o auditoría de cuentas).
