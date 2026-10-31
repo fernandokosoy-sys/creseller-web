@@ -24,8 +24,17 @@ La pregunta de fondo: **¿cuál era el objetivo? ¿Sacar cornalitos, zapatos o t
 
 ## 2. Cómo se traduce a Product Ads
 
-- **ACOS** = inversión en publicidad / ventas por publicidad. Cuánto gastás de ads por cada peso vendido.
-- **ROAS** = ventas por publicidad / inversión. Es la inversa del ACOS.
+- **ROAS** = ventas por publicidad / inversión. Es **el objetivo**: lo que le pedís a la campaña. "Por cada $1 que invierto, quiero $X vendidos."
+- **ACOS** = inversión en publicidad / ventas por publicidad. Es **un resultado**: lo que te muestra el panel después. "De cada $100 vendidos, $X se fueron en publicidad."
+- **TACOS** = inversión en publicidad / ventas totales (pagas y orgánicas). Mide cuánto pesa la publicidad sobre todo lo que vendés.
+- ACOS y ROAS son inversos: ACOS = 1 / ROAS. Mucho ACOS es poco ROAS, y al revés.
+
+Lo que muestra el panel (según Fernando): impresiones, clics, CPC, inversión, ingresos, ventas por publicidad, ventas orgánicas, ROAS, ACOS y TACOS.
+
+**La confusión del seller:** viene acostumbrado a pensar en ACOS, pero hoy el objetivo se carga en ROAS, y los dos son opuestos.
+- Si el seller está acostumbrado a un ACOS de 15% y carga "15" como ROAS, está pidiendo un ACOS de 6,7%. Es una red mucho más chica de lo que quería, y la campaña puede quedarse sin pesca.
+- Si carga un número "bajo" porque cree que menos es mejor, por ejemplo ROAS 3, está aceptando un ACOS de 33%. Es una red mucho más grande de lo que quería.
+- Regla para recordar: **en ACOS, número chico = red chica. En ROAS, número chico = red grande.**
 
 | ACOS | ROAS |
 |---|---|
@@ -91,9 +100,9 @@ Todo lo de esta sección sale de guías de terceros, no de documentación oficia
 - Cómo influye el objetivo de ACOS o de ROAS en lo que se paga por clic.
 - Si una red grande encarece el clic (la hipótesis del tiburón).
 
-**Cambio a verificar:** una agencia certificada de Argentina (Algoritmo Digital) afirma que Mercado Ads dio de baja el ACOS objetivo como modo de configuración y que hoy se configura con ROAS objetivo. Es una fuente de terceros y puede variar por país. Hay que mirar el panel de Mercado Ads de Argentina antes de enseñarlo.
+**Confirmado por Fernando en el panel:** hoy el objetivo de una campaña se fija por ROAS. El ACOS aparece como métrica de resultado, junto con el ROAS y el TACOS. Coincide con lo que decía la agencia (Algoritmo Digital). Puede variar por país.
 
-**Para el material:** hablar de "objetivo de rentabilidad (ACOS o ROAS)", y no prometer que bajar el objetivo baja el CPC.
+**Para el material:** hablar de "ROAS objetivo" y explicar el ACOS como el resultado que se ve después. No prometer que bajar el objetivo baja el CPC.
 
 **Cómo estudiarlo con datos:** comparar el CPC promedio por campaña y por anuncio a lo largo del tiempo y cruzarlo con los cambios de objetivo.
 
