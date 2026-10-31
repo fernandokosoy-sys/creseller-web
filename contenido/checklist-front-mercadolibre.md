@@ -71,14 +71,22 @@ tabla de cada bloque. Repetir cada semana y comparar.
 - [ ] Beneficios de programas para el comprador (nivel de fidelidad, etc.)
 - [ ] Banners de categoría y su ubicación
 
-## 6. Lo que el comprador está ofreciendo / cuánto paga
+## 6. Qué le ofrece cada vendedor al comprador, y cuánto
 
-Lo que se puede deducir desde el front, sin datos internos:
+Para cada competidor, anotar la oferta completa que ve el comprador (todo visible en el front):
+
+- [ ] Precio, descuento y cupón
+- [ ] Cuotas (cantidad y si son sin interés)
+- [ ] Envío (gratis o con costo) y fecha de llegada
+- [ ] Garantía y devolución
+- [ ] Beneficio extra: kit, combo o descuento por cantidad
+
+Y comparar el mercado en conjunto:
 
 - [ ] Rango de precios que ocupan las primeras posiciones de la búsqueda
 - [ ] Precio mediano entre los 10 primeros resultados
 - [ ] Cuánto del precio visible es descuento real y cuánto es precio inflado antes de la rebaja
-- [ ] Costo total para el comprador (precio + envío + cuotas con interés)
+- [ ] Costo total que paga el comprador (precio + envío + cuotas con interés)
 - [ ] Qué precio "se mueve" (el que tiene más ventas visibles) frente al más barato
 - [ ] Cantidad de vendidos por rango de precio (patrón de demanda)
 
