@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Calendar, MessageCircle } from 'lucide-react';
+import { WHATSAPP_URL } from './whatsapp';
 
 const CTASection: React.FC = () => {
   return (
@@ -22,10 +23,10 @@ const CTASection: React.FC = () => {
             <Calendar className="w-6 h-6" />
             Agendar llamada de diagnóstico
           </a>
-          <button className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-white/20 transition-all">
+          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-white/20 transition-all">
             <MessageCircle className="w-6 h-6 text-green-400" />
             Escribir por WhatsApp
-          </button>
+          </a>
         </div>
       </div>
     </section>
