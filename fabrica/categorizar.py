@@ -12,9 +12,11 @@ def get(path):
 def consulta(desc):  # texto en minúscula, sin códigos de proveedor
     return desc.lower().replace(" x "," ").replace("vs usos","usos").replace("c/tapa","con tapa").replace("tuper","tupper")
 f = json.load(open("data/factura_ramy_0009-00001276.json"))
+import os
+OV = json.load(open("data/consultas.json")) if os.path.exists("data/consultas.json") else {}
 out = {}
 for it in f["items"]:
-    q = consulta(it["desc"])
+    q = OV.get(it["sku"]) or consulta(it["desc"])
     r = get("/sites/MLA/domain_discovery/search?limit=3&q="+urllib.parse.quote(q))
     cands = [{"category_id":c["category_id"],"category":c["category_name"],"domain":c["domain_id"]} for c in r] if isinstance(r,list) else []
     top = cands[0]["category_id"] if cands else None

@@ -33,13 +33,24 @@ def precio_min(costo, tipo, envio=0.0, margen=MARGEN):
 def ganancia(precio, costo, tipo, fijo, envio=0.0):
     return precio/(1+IVA)*(1-OTROS_PCT) - costo - COM[tipo]*precio - fijo - (envio if precio >= UMBRAL else 0)
 
+_CC = {}
+def info_categoria(cat):
+    if not _CC and os.path.exists("data/cat_cache.json"): _CC.update(json.load(open("data/cat_cache.json")))
+    if cat not in _CC:
+        g = lambda p: json.load(urllib.request.urlopen(urllib.request.Request(API+p, headers={"User-Agent":"fabrica"}), timeout=25))
+        c = g(f"/categories/{cat}"); a = g(f"/categories/{cat}/attributes")
+        _CC[cat] = {"path": " > ".join(x["name"] for x in c["path_from_root"]), "max_title": (c.get("settings") or {}).get("max_title_length") or 60,
+                    "req": [x["id"] for x in a if "required" in (x.get("tags") or {})]}
+        json.dump(_CC, open("data/cat_cache.json", "w"), ensure_ascii=False)
+    return _CC[cat]
+
 def leer_csv(p): return list(csv.DictReader(open(p, encoding="utf-8-sig"), delimiter=";"))
 def escribir_csv(p, cols, rows):
     with open(p, "w", newline="", encoding="utf-8-sig") as f:
         w = csv.DictWriter(f, fieldnames=cols, delimiter=";", extrasaction="ignore"); w.writeheader(); w.writerows(rows)
 
 FICHA_COLS = ["sku","descripcion_factura","categoria_sugerida","categoria_final","tipo_producto","marca","modelo",
-  "material","color","capacidad_ml","unidades_set","largo_cm","ancho_cm","alto_cm","peso_g","gtin","fotos","notas_proveedor"]
+  "material","color","capacidad_ml","unidades_set","largo_cm","ancho_cm","alto_cm","peso_g","gtin","fotos","notas_proveedor"]  # + categoria_confirmada (armar_fichas.py)
 
 def cmd_fichas():
     cats = json.load(open("data/categorias.json")); f = json.load(open("data/factura_ramy_0009-00001276.json"))
@@ -57,10 +68,15 @@ def cmd_fichas():
     escribir_csv("data/fichas.csv", FICHA_COLS, rows); print(f"data/fichas.csv: {len(rows)} filas")
 
 def titulo(ficha, base, maxlen):
-    partes = [ficha.get("tipo_producto") or base.title(), ficha.get("material"), ficha.get("marca"),
-              ficha.get("modelo"), f'{ficha["capacidad_ml"]} ml' if ficha.get("capacidad_ml") else "", ficha.get("color")]
-    t = " ".join(p for p in partes if p).strip()
-    t = re.sub(r"[^\w\s.,/+%-]", "", t)               # sin símbolos, sin emojis
+    """Producto + marca + modelo (si hay marca) + material + capacidad. Sin color ni códigos internos sueltos."""
+    tipo = ficha.get("tipo_producto") or base.title(); cap = ficha.get("capacidad_ml")
+    capt = ""
+    if cap:
+        v = float(cap); capt = f"{v/1000:g} L".replace(".", ",") if v >= 1000 else f"{v:g} ml"
+    mat = ficha.get("material", "")
+    partes = [tipo, ficha.get("marca"), ficha.get("modelo") if ficha.get("marca") else "",
+              mat if mat and mat.lower() not in tipo.lower() else "", capt]
+    t = re.sub(r"[^\w\s.,/+%-]", "", " ".join(p for p in partes if p)).strip()   # sin símbolos ni emojis
     while len(t) > maxlen and " " in t: t = t.rsplit(" ", 1)[0]
     return t
 
@@ -76,41 +92,57 @@ def descripcion(ficha, base):
     return "\n".join(l)
 
 def cmd_borradores(tipo="clasica"):
-    cats = json.load(open("data/categorias.json")); f = json.load(open("data/factura_ramy_0009-00001276.json"))
+    f = json.load(open("data/factura_ramy_0009-00001276.json"))
     fichas = {r["sku"]: r for r in leer_csv("data/fichas.csv")}
     out = []; os.makedirs("salida/payloads", exist_ok=True)
+    DEFAULTS = {"WITH_USB":"Sí","REQUIRES_ASSEMBLY":"No","INCLUDES_ASSEMBLY_MANUAL":"No","DRINKING_GLASS_PRODUCT_TYPE":"Vaso"}
+    DIM = {"WIDTH":"ancho_cm","DEPTH":"largo_cm","HEIGHT":"alto_cm","LENGTH":"largo_cm","MAX_HEIGHT":"alto_cm"}
     for it in f["items"]:
-        s = it["sku"]; fi = fichas[s]; ct = cats[s]; costo = it["precio"]
-        cat = fi["categoria_final"] or ct["categoria"]
+        s = it["sku"]; fi = fichas[s]; costo = it["precio"]
+        cat = fi["categoria_final"]; ct = info_categoria(cat) if cat else {"path": "", "max_title": 60, "req": []}
         pc, fc = precio_min(costo, "clasica"); pp, fp = precio_min(costo, "premium")
         pre = pc if tipo == "clasica" else pp; fijo = fc if tipo == "clasica" else fp
         faltan = []
-        if not fi["categoria_final"]: faltan.append("CONFIRMAR_CATEGORIA")
+        if not cat or fi.get("categoria_confirmada", "").upper() != "SI": faltan.append("CONFIRMAR_CATEGORIA")
         if not fi["fotos"]: faltan.append("FOTOS")
-        for a in ct["atributos_requeridos"]:
-            if a == "BRAND" or a == "MODEL": continue        # BRAND=Genérica / MODEL=código proveedor (por defecto)
-            campo = {"VOLUME_CAPACITY":"capacidad_ml","MATERIAL":"material","WIDTH":"ancho_cm","DEPTH":"largo_cm","HEIGHT":"alto_cm","LENGTH":"largo_cm"}.get(a)
-            if not (campo and fi.get(campo)): faltan.append(a)
-        if not (fi["largo_cm"] and fi["peso_g"]): faltan.append("MEDIDAS_PESO_ENVIO")
-        t = titulo(fi, it["desc"], ct["max_title"] or 60)
-        attrs = [{"id":"SELLER_SKU","value_name":s},{"id":"BRAND","value_name":fi["marca"] or "Genérica"},
-                 {"id":"MODEL","value_name":fi["modelo"] or s},{"id":"ITEM_CONDITION","value_id":"2230284"}]
-        for a, campo in (("MATERIAL","material"),("COLOR","color"),("VOLUME_CAPACITY","capacidad_ml"),("GTIN","gtin")):
-            if fi.get(campo): attrs.append({"id":a,"value_name":fi[campo] + (" ml" if a=="VOLUME_CAPACITY" else "")})
+        for a in ct["req"]:
+            if a in ("BRAND", "MODEL", "MANUFACTURER"): continue      # marca = ficha o Genérica / modelo = código proveedor
+            if a == "MATERIAL" and fi["material"]: continue
+            if a == "VOLUME_CAPACITY" and fi["capacidad_ml"]: continue
+            if a in DEFAULTS: continue                                 # valor por defecto (ver alerta)
+            if a in DIM and fi.get(DIM[a]): continue
+            faltan.append(a)
+        if not (fi["largo_cm"] and fi["ancho_cm"] and fi["alto_cm"] and fi["peso_g"]): faltan.append("MEDIDAS_PESO_ENVIO")
+        t = titulo(fi, it["desc"], ct["max_title"])
+        marca = fi["marca"] or "Genérica"
+        attrs = [{"id":"SELLER_SKU","value_name":s},{"id":"BRAND","value_name":marca},{"id":"MODEL","value_name":fi["modelo"] or s},
+                 {"id":"ITEM_CONDITION","value_id":"2230284"}]
+        if "MANUFACTURER" in ct["req"]: attrs.append({"id":"MANUFACTURER","value_name":marca})
+        usados = [a for a in ct["req"] if a in DEFAULTS]
+        for a in usados: attrs.append({"id":a,"value_name":DEFAULTS[a]})
+        for a, campo in (("MATERIAL","material"),("COLOR","color"),("GTIN","gtin")):
+            if fi.get(campo): attrs.append({"id":a,"value_name":fi[campo]})
+        if fi.get("capacidad_ml"): attrs.append({"id":"VOLUME_CAPACITY","value_name":f'{fi["capacidad_ml"]} ml'})
+        for a, campo in DIM.items():
+            if a in ct["req"] and fi.get(campo): attrs.append({"id":a,"value_name":f'{fi[campo]} cm'})
         for a, campo in (("SELLER_PACKAGE_LENGTH","largo_cm"),("SELLER_PACKAGE_WIDTH","ancho_cm"),("SELLER_PACKAGE_HEIGHT","alto_cm"),("SELLER_PACKAGE_WEIGHT","peso_g")):
-            if fi.get(campo): attrs.append({"id":a,"value_name":str(int(float(fi[campo])))})   # string numérico, sin unidad
+            if fi.get(campo): attrs.append({"id":a,"value_name":str(math.ceil(float(fi[campo])))})   # string numérico sin unidad (cm / g)
         payload = {"title":t,"category_id":cat,"price":pre,"currency_id":"ARS","available_quantity":it["cant"],
             "buying_mode":"buy_it_now","condition":"new","listing_type_id":LISTING[tipo],
             "sale_terms":[{"id":"WARRANTY_TYPE","value_name":"Garantía del vendedor"},{"id":"WARRANTY_TIME","value_name":GARANTIA}],
             "pictures":[{"source":u} for u in fi["fotos"].split("|") if u.strip()],"attributes":attrs,
             "_descripcion":descripcion(fi, it["desc"])}
         json.dump(payload, open(f"salida/payloads/{s}.json","w"), ensure_ascii=False, indent=1)
-        env = "precio >= 33.000: sumar envío a cargo del vendedor" if pre >= UMBRAL else ("premium >= 33.000: sumar envío" if pp >= UMBRAL else "")
-        out.append(dict(sku=s, descripcion=it["desc"], stock=it["cant"], costo_neto=f"{costo:.2f}", costo_con_iva=f"{costo*1.21:.2f}",
-            categoria=cat, categoria_path=ct["path"], titulo=t, largo_titulo=len(t),
-            precio_clasica=pc, precio_premium=pp, precio_usado=pre, ganancia_unit=f"{ganancia(pre,costo,tipo,fijo):.0f}",
-            margen_pct=f"{ganancia(pre,costo,tipo,fijo)/pre*100:.1f}", inversion_con_iva=f'{it["importe"]*1.21:.2f}',
-            estado="LISTO" if not faltan else "FALTA: " + ", ".join(faltan), alerta=env))
+        al = []
+        if pre >= UMBRAL: al.append("precio >= 33.000: sumar envío a cargo del vendedor")
+        elif pp >= UMBRAL: al.append("premium >= 33.000: sumar envío")
+        if usados: al.append("atributos por defecto a confirmar: " + ", ".join(f"{a}={DEFAULTS[a]}" for a in usados))
+        if "CONFLICTO" in fi["notas_proveedor"]: al.append("dato en conflicto entre fuentes (ver notas)")
+        out.append(dict(sku=s, descripcion=it["desc"], titulo=t, largo_titulo=len(t), categoria=cat, categoria_path=ct["path"], stock=it["cant"],
+            costo_neto=f"{costo:.2f}", costo_con_iva=f"{costo*1.21:.2f}", precio_clasica=pc, precio_premium=pp, precio_usado=pre,
+            ganancia_unit=f"{ganancia(pre,costo,tipo,fijo):.0f}", margen_pct=f"{ganancia(pre,costo,tipo,fijo)/pre*100:.1f}",
+            inversion_con_iva=f'{it["importe"]*1.21:.2f}', fotos=len(fi["fotos"].split("|")) if fi["fotos"] else 0,
+            estado="LISTO" if not faltan else "FALTA: " + ", ".join(faltan), alerta="; ".join(al)))
     escribir_csv("salida/borradores.csv", list(out[0].keys()), out)
     listos = sum(r["estado"] == "LISTO" for r in out); print(f"salida/borradores.csv: {len(out)} SKUs, {listos} LISTO")
 
@@ -140,5 +172,5 @@ def cmd_enviar(real, cuenta):
 
 if __name__ == "__main__":
     a = sys.argv[1:]; cuenta = a[a.index("--cuenta")+1] if "--cuenta" in a else "cuenta"
-    {"fichas": cmd_fichas, "borradores": cmd_borradores,
+    {"fichas": lambda: print("usar: python3 armar_fichas.py"), "borradores": cmd_borradores,
      "validar": lambda: cmd_enviar(False, cuenta), "publicar": lambda: cmd_enviar(True, cuenta)}.get(a[0] if a else "", lambda: print(__doc__))()
