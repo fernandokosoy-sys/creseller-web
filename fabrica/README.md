@@ -19,3 +19,6 @@ Precio: `P = (costo + costo fijo) / (1/1,21 - comision - margen)`, margen sobre 
 Sobre $33.000 el modelo no suma el envío a cargo del vendedor: ajustar `envio` por SKU.
 
 Para otra factura: copiar `data/factura_*.json` con el mismo formato y correr los pasos 1 a 4.
+
+## Token de la cuenta
+`ml_token.py` obtiene y renueva el token OAuth (dura 6 h). Instrucciones en su encabezado. Cuenta por defecto: `tutti-home` (`ML_CUENTA` para otra).
