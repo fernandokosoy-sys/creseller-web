@@ -67,9 +67,11 @@ def cmd_fichas():
         rows.append(r)
     escribir_csv("data/fichas.csv", FICHA_COLS, rows); print(f"data/fichas.csv: {len(rows)} filas")
 
+SET_CAP_MIXTA = {"MAX-2911", "MAX-0396", "MAX-0355", "MAX-0359", "MAX-1631"}
 def titulo(ficha, base, maxlen):
     """Producto + marca + modelo (si hay marca) + material + capacidad. Sin color ni códigos internos sueltos."""
     tipo = ficha.get("tipo_producto") or base.title(); cap = ficha.get("capacidad_ml")
+    if ficha.get("sku") in SET_CAP_MIXTA: cap = ""          # sets con piezas de distinta capacidad: el título no lleva una sola
     capt = ""
     if cap:
         v = float(cap); capt = f"{v/1000:g} L".replace(".", ",") if v >= 1000 else f"{v:g} ml"
@@ -88,13 +90,14 @@ def descripcion(ficha, base):
     if ficha.get("largo_cm") and ficha.get("ancho_cm") and ficha.get("alto_cm"):
         l.append(f'Medidas: {ficha["largo_cm"]} x {ficha["ancho_cm"]} x {ficha["alto_cm"]} cm.')
     if ficha.get("peso_g"): l.append(f'Peso: {ficha["peso_g"]} g.')
-    l.append("Producto nuevo. Consultá por stock y envíos.")
+    l.append("Producto nuevo.")
     return "\n".join(l)
 
 def cmd_borradores(tipo="clasica"):
     f = json.load(open("data/factura_ramy_0009-00001276.json"))
     fichas = {r["sku"]: r for r in leer_csv("data/fichas.csv")}
     out = []; os.makedirs("salida/payloads", exist_ok=True)
+    DESC = json.load(open("data/descripciones.json")) if os.path.exists("data/descripciones.json") else {}
     DEFAULTS = {"WITH_USB":"Sí","REQUIRES_ASSEMBLY":"No","INCLUDES_ASSEMBLY_MANUAL":"No","DRINKING_GLASS_PRODUCT_TYPE":"Vaso"}
     DIM = {"WIDTH":"ancho_cm","DEPTH":"largo_cm","HEIGHT":"alto_cm","LENGTH":"largo_cm","MAX_HEIGHT":"alto_cm"}
     for it in f["items"]:
@@ -131,7 +134,7 @@ def cmd_borradores(tipo="clasica"):
             "buying_mode":"buy_it_now","condition":"new","listing_type_id":LISTING[tipo],
             "sale_terms":[{"id":"WARRANTY_TYPE","value_name":"Garantía del vendedor"},{"id":"WARRANTY_TIME","value_name":GARANTIA}],
             "pictures":[{"source":u} for u in fi["fotos"].split("|") if u.strip()],"attributes":attrs,
-            "_descripcion":descripcion(fi, it["desc"])}
+            "_descripcion":DESC.get(s) or descripcion(fi, it["desc"])}
         json.dump(payload, open(f"salida/payloads/{s}.json","w"), ensure_ascii=False, indent=1)
         al = []
         if pre >= UMBRAL: al.append("precio >= 33.000: sumar envío a cargo del vendedor")

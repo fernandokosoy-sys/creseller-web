@@ -33,7 +33,7 @@ CAT = {"MAX-1649":"MLA412348","MAX-0053":"MLA376317","MAX-0054":"MLA376317","MAX
  "MAX-0359":"MLA376317","MAX-1631":"MLA376317","MAX-0329":"MLA393046","MAX-2939":"MLA414028","MAX-0026":"","MAX-1670":"MLA416551","MAX-1654":"MLA416551",
  "MAX-2903":"MLA6656","HDG00131-2":"MLA376317","RJW-24507":"MLA6734","RJW-24508":"MLA6734","RXH-24413":"MLA413429","RYJ-24371":"MLA455176",
  "RYJ-24365":"MLA455176","RYJ-24363":"MLA455176","ROLL-24300":"MLA1594","ROLL-24299":"MLA1594"}
-TIPO = {"RJW-24507":"Luz Led Slim con Sensor de Movimiento USB","RJW-24508":"Luz Led con Sensor y 3 Luces USB","RXH-24413":"Frutero 2 Pisos",
+TIPO = {"RJW-24507":"Luz Led Slim con Sensor y USB","RJW-24508":"Luz Led con Sensor y 3 Luces USB","RXH-24413":"Frutero 2 Pisos",
  "MAX-2903":"Banquito Plegable","MAX-0329":"Cesto para Ropa Sucia con Tapa","MAX-2939":"Centrifugador Escurridor de Verduras"}
 prev = {r["sku"]: r for r in leer_csv("data/fichas.csv")} if os.path.exists("data/fichas.csv") else {}
 rows = []
